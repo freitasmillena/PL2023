@@ -100,8 +100,8 @@ def grafico(dist, metric):
 
     fig, ax = plt.subplots()
 
-    ax.set_title(f"No. of people with disease by {metric}")
-    ax.set_ylabel("No. of people")
+    ax.set_title(f"Número de pessoas com doença de acordo com o {metric}")
+    ax.set_ylabel("Número de pessoas")
     ax.set_xlabel(f"{metric}")
 
     ax.bar(values, percentages, color='pink',
