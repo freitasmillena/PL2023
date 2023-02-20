@@ -43,7 +43,8 @@ def dist_idade(data):
 def dist_colesterol(data):
     distcolesterol = {}
     maxColesterol = max([d[3] for d in data])
-    minColesterol = min([d[3] for d in data if d[3] != 0]) #desconsidero dados que contém 0 de colesterol
+    minColesterol = min([d[3] for d in data if d[3] != 0 and d[5]]) #desconsidero dados que contém 0 de colesterol
+
     
     for colesterol in range(minColesterol, maxColesterol,10):
         total = [d for d in data if d[3] in range(colesterol,colesterol+10) and d[3] != 0] #intervalos de 10 em 10
