@@ -100,7 +100,7 @@ def grafico(dist, metric):
 
     fig, ax = plt.subplots()
 
-    ax.set_title(f"Número de pessoas com doença de acordo com o {metric}")
+    ax.set_title(f"Distribuição da doença por {metric}")
     ax.set_ylabel("Número de pessoas")
     ax.set_xlabel(f"{metric}")
 
@@ -154,17 +154,17 @@ def main():
             if genderDist.name == "":
                 genderDist.data = dist_gender(data)
                 genderDist.name = "género"
-            grafico(genderDist.data, "Sexo")
+            grafico(genderDist.data, "sexo")
         elif saida == 5:
             if ageDist.name == "":
                 ageDist.data = dist_idade(data)
                 ageDist.name = "idade"
-            grafico(ageDist.data, "Escalões etários")
+            grafico(ageDist.data, "escalões etários")
         elif saida == 6:
             if colesterolDist.name == "":
                 colesterolDist.data = dist_colesterol(data)
                 colesterolDist.name = "colesterol"
-            grafico(colesterolDist.data, "Níveis de colesterol")
+            grafico(colesterolDist.data, "níveis de colesterol")
         else:
             print("you didn't add anything")
         if saida != 0:
