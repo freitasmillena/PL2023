@@ -3,7 +3,6 @@ import re
 moedasValidas = {
     "5c": 5,
     "10c": 10,
-    "15c": 15,
     "20c": 20,
     "50c": 50,
     "1e": 100,
@@ -36,6 +35,7 @@ def levantar(str):
         print("Operação Inválida: Telefone já se encontra levantado.")
         return
     estado["levantou"] = True
+    print("Introduza moedas.")
 
 def pousar(str):
     if not estado["levantou"]:
@@ -48,11 +48,12 @@ def pousar(str):
 def troco(quantia):
     moedas = {5: 0, 10: 0, 20: 0, 50: 0, 100: 0, 200: 0}
     for moeda in sorted(moedas, reverse=True):
-        while quantia > 0:
+        while quantia >= moeda:
             moedas[moeda] +=1
-            quantia -= moedas[moeda]
-    total = [f'{key}x{moedas[value]}' for key, value in moedas if moedas[value]]
-    print(f"Troco = {', '.join(total)}")
+            quantia -= moeda
+    total = [f"{moedas[value]}x{key}" for key, value in sorted(moedasValidas.items()) if moedas[value]]
+    if len(total) >0:
+        print(f"Troco = {', '.join(total)}")
 
 def abortar(str):
     if not estado["levantou"]:
@@ -68,9 +69,10 @@ def moedas(str):
     moedasInseridas = re.findall(r"\d+[ce]", str)
     for moeda in moedasInseridas:
         if moeda not in moedasValidas:
-            print(f"Moeda inválida: {moeda}")
+            print(f'Moeda inválida: {moeda}.')
         else:
             estado["saldo"] += moedasValidas[moeda]
+    print(f'Saldo = {(estado["saldo"]/100):.2f}€')
 
 def telefonar(str):
     if not estado["levantou"]:
@@ -84,10 +86,12 @@ def telefonar(str):
     elif custo_total == -2:
         print('Operação Inválida: Esse número não é permitido neste telefone.')
     else:
-        estado["saldo"] -= custo
-        print(f'Custo total da operação: {(custo / 100):.2f}€; Saldo atual: {(estado["saldo"] / 100):.2f}€')
-
-def sair(str, state):
+        if custo_total <= estado["saldo"]:
+            estado["saldo"] -= custo_total
+            print(f'Custo total da operação: {(custo_total / 100):.2f}€; Saldo atual: {(estado["saldo"] / 100):.2f}€')
+        else:
+            print("Saldo insuficiente.")
+def sair(str):
     exit(0)
 
 def main():
@@ -108,5 +112,4 @@ def main():
                 v(line)
 
 
-if __name__ == "main":
-    main()
+main()
