@@ -100,8 +100,13 @@ def grafico(dist, metric):
 
     fig, ax = plt.subplots()
 
+<<<<<<< HEAD
     ax.set_title(f"No. of people with disease by {metric}")
     ax.set_ylabel("No. of people")
+=======
+    ax.set_title(f"Distribuição da doença por {metric}")
+    ax.set_ylabel("Número de pessoas")
+>>>>>>> 367b9678ceae77e7f9ef2d0b558a8de5e78e53af
     ax.set_xlabel(f"{metric}")
 
     ax.bar(values, percentages, color='pink',
@@ -154,17 +159,29 @@ def main():
             if genderDist.name == "":
                 genderDist.data = dist_gender(data)
                 genderDist.name = "género"
+<<<<<<< HEAD
             grafico(genderDist.data, "Sexo")
+=======
+            grafico(genderDist.data, "sexo")
+>>>>>>> 367b9678ceae77e7f9ef2d0b558a8de5e78e53af
         elif saida == 5:
             if ageDist.name == "":
                 ageDist.data = dist_idade(data)
                 ageDist.name = "idade"
+<<<<<<< HEAD
             grafico(ageDist.data, "Escalões etários")
+=======
+            grafico(ageDist.data, "escalões etários")
+>>>>>>> 367b9678ceae77e7f9ef2d0b558a8de5e78e53af
         elif saida == 6:
             if colesterolDist.name == "":
                 colesterolDist.data = dist_colesterol(data)
                 colesterolDist.name = "colesterol"
+<<<<<<< HEAD
             grafico(colesterolDist.data, "Níveis de colesterol")
+=======
+            grafico(colesterolDist.data, "níveis de colesterol")
+>>>>>>> 367b9678ceae77e7f9ef2d0b558a8de5e78e53af
         else:
             print("you didn't add anything")
         if saida != 0:
